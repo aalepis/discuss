@@ -30,7 +30,12 @@ defmodule Discuss.AuthController do
     |> redirect(to: topic_path(conn, :index))
   end
 
-  defp insert_or_update_user(changeset) do
+
+  # Custom user insertion 
+  # changeset = Discuss.User.changeset(%Discuss.User{}, %{token: "0eb872bdddasfhakjf33cb576567f9afc0af", email: "test1@gmail.com", provider: "github"})
+  # Discuss.AuthController.insert_or_update_user(changeset)
+
+  def insert_or_update_user(changeset) do
     case Repo.get_by(Discuss.User, email: changeset.changes.email) do
       nil -> Repo.insert(changeset)      
       user -> {:ok, user} 
