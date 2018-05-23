@@ -17,11 +17,11 @@
   <body>
     <nav class="light-blue"> 
       <div class="nav-wrapper container">       
-          <%= if @conn.assigns[:user] do %>            
+          <%= if @conn.assigns.user do %>            
               <%= link "Logout", to: auth_path(@conn, :signout), class: "waves-effect waves-light btn right" %>            
-          <%= else %>            
-             <%= link "Sign in with github", to: auth_path(@conn, :request, "github"), class: "waves-effect waves-light btn right" %>         
-          <%= end %>
+          <% else %>            
+             <%= link "Sign in with github", to: auth_path(@conn, :request, "github"), class: "waves-effect waves-light btn right"          %>
+          <% end %>
           <a href="/" class="brand-logo">Discussions</a>
       </div>
 
